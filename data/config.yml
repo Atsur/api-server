@@ -10,7 +10,7 @@ database:
   max_idle_conns: 50
 
 server:
-  port: "3000"
-  secret: "jdnfksdmfksda"
+  port: "8080"
+  secret: "registry-secret-z738"
   #release | debug
   mode: "release"

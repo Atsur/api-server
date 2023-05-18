@@ -2,10 +2,11 @@ package api
 
 import (
 	"fmt"
-
-	"github.com/antonioalfa22/go-rest-template/internal/api/router"
-	"github.com/antonioalfa22/go-rest-template/internal/pkg/config"
-	"github.com/antonioalfa22/go-rest-template/internal/pkg/db"
+	"log"
+	"github.com/atsur/api-server/internal/api/router"
+	"github.com/atsur/api-server/internal/pkg/config"
+	"github.com/atsur/api-server/internal/pkg/db"
+	"github.com/atsur/api-server/pkg/fbauth"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,7 +22,11 @@ func Run(configPath string) {
 	}
 	setConfiguration(configPath)
 	conf := config.GetConfig()
-	web := router.Setup()
+	client, err := fbauth.InitAuth()
+	if err != nil {
+		log.Fatalln("failed to init firebase auth", err)
+	}
+	web := router.Setup(client)
 	fmt.Println("Go API REST Running on port " + conf.Server.Port)
 	fmt.Println("==================>")
 	_ = web.Run(":" + conf.Server.Port)

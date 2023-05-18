@@ -2,11 +2,12 @@ package crypto
 
 import (
 	"fmt"
-	config2 "github.com/antonioalfa22/go-rest-template/internal/pkg/config"
-	"github.com/dgrijalva/jwt-go"
-	"golang.org/x/crypto/bcrypt"
 	"log"
 	"time"
+
+	config2 "github.com/atsur/api-server/internal/pkg/config"
+	"github.com/dgrijalva/jwt-go"
+	"golang.org/x/crypto/bcrypt"
 )
 
 func HashAndSalt(pwd []byte) string {

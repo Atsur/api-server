@@ -2,16 +2,22 @@ package router
 
 import (
 	"fmt"
-	"github.com/antonioalfa22/go-rest-template/internal/api/controllers"
-	"github.com/antonioalfa22/go-rest-template/internal/api/middlewares"
-	"github.com/gin-gonic/gin"
-	swaggerFiles "github.com/swaggo/files"
-	"github.com/swaggo/gin-swagger"
 	"io"
 	"os"
+
+	"firebase.google.com/go/auth"
+	"github.com/atsur/api-server/internal/api/controllers"
+	"github.com/atsur/api-server/internal/api/middlewares"
+	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-func Setup() *gin.Engine {
+var (
+	apiKeyName = os.Getenv("API_KEY_NAME")
+)
+
+func Setup(client *auth.Client) *gin.Engine {
 	app := gin.New()
 
 	// Logging to a file.
@@ -43,18 +49,28 @@ func Setup() *gin.Engine {
 	app.POST("/api/login/add", controllers.CreateUser)
 	// ================== Docs Routes
 	app.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	// ================== User Routes
-	app.GET("/api/users", controllers.GetUsers)
-	app.GET("/api/users/:id", controllers.GetUserById)
-	app.POST("/api/users", controllers.CreateUser)
-	app.PUT("/api/users/:id", controllers.UpdateUser)
-	app.DELETE("/api/users/:id", controllers.DeleteUser)
+
+	// FirebaseAuth protected routes
+	versioned := app.Group("/v1")
+	// Use JWT auth middleware
+	versioned.Use(middlewares.AuthJWT(client))
 	// ================== Tasks Routes
-	app.GET("/api/tasks/:id", controllers.GetTaskById)
-	app.GET("/api/tasks", controllers.GetTasks)
-	app.POST("/api/tasks", controllers.CreateTask)
-	app.PUT("/api/tasks/:id", controllers.UpdateTask)
-	app.DELETE("/api/tasks/:id", controllers.DeleteTask)
+	versioned.GET("/api/tasks/:id", controllers.GetTaskById)
+	versioned.GET("/api/tasks", controllers.GetTasks)
+	versioned.POST("/api/tasks", controllers.CreateTask)
+	versioned.PUT("/api/tasks/:id", controllers.UpdateTask)
+	versioned.DELETE("/api/tasks/:id", controllers.DeleteTask)
+
+	// Admin routes
+	admin := app.Group("/v1/admin")
+	// must have api key
+	admin.Use(middlewares.AuthAPIKey(apiKeyName))
+	// ================== User Routes
+	admin.GET("/users", controllers.GetUsers)
+	admin.GET("/api/users/:id", controllers.GetUserById)
+	admin.POST("/api/users", controllers.CreateUser)
+	admin.PUT("/api/users/:id", controllers.UpdateUser)
+	admin.DELETE("/api/users/:id", controllers.DeleteUser)
 
 	return app
 }

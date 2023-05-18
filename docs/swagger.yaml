@@ -35,13 +35,13 @@ definitions:
     type: object
 info:
   contact:
-    email: antonioalfa22@gmail.com
-    name: Antonio Paya Gonzalez
-    url: http://antoniopg.tk
+    email: ada@atsur.art
+    name: Adaobi Orajiaku
+    url: http://atsur.art
   description: API REST in Golang with Gin Framework
   license:
     name: MIT
-    url: https://github.com/antonioalfa22/go-rest-template/blob/master/LICENSE
+    url: https://github.com/atsur/api-server/blob/master/LICENSE
   version: "1.0"
 paths:
   /api/users:

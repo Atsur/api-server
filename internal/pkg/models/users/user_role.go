@@ -1,8 +1,9 @@
 package users
 
 import (
-	"github.com/antonioalfa22/go-rest-template/internal/pkg/models"
 	"time"
+
+	"github.com/atsur/api-server/internal/pkg/models"
 )
 
 type UserRole struct {

@@ -11,12 +11,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type LoginInput struct {
+type APIInput struct {
 	Username string `json:"username" binding:"required"`
 	Password string `json:"password" binding:"required"`
 }
 
-func Login(c *gin.Context) {
+func API(c *gin.Context) {
 	var loginInput LoginInput
 	_ = c.BindJSON(&loginInput)
 	s := persistence.GetUserRepository()

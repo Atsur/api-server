@@ -1,4 +1,4 @@
-FROM golang:1.15.3-alpine AS build_base
+FROM golang:1.18-alpine AS build_base
 
 ENV CGO_ENABLED=1
 ENV GO111MODULE=on
@@ -19,7 +19,7 @@ COPY . .
 RUN go build -o ./out/app ./cmd/api/main.go
 
 # Start fresh from a smaller image
-FROM alpine:3.12
+FROM alpine:latest
 RUN apk add ca-certificates
 
 WORKDIR /app
@@ -30,7 +30,7 @@ COPY --from=build_base /src/data /app/data
 RUN chmod +x restapi
 
 # This container exposes port 8080 to the outside world
-EXPOSE 3000
+EXPOSE 8080
 
 # Run the binary program produced by `go install`
 ENTRYPOINT ./restapi

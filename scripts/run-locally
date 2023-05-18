@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+GOOGLE_CLOUD_PROJECT=regist API_KEY_NAME=reg FIREBASE_CONFIG_FILE=firebase-admin-sdk.json go run cmd/api/main.go

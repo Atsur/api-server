@@ -1,4 +1,4 @@
-package tasks
+package provenance
 
 import (
 	"time"
@@ -7,7 +7,7 @@ import (
 	"github.com/atsur/api-server/internal/pkg/models/users"
 )
 
-type Task struct {
+type History struct {
 	models.Model
 	Name   string     `gorm:"column:name;not null;" json:"name" form:"name"`
 	Text   string     `gorm:"column:text;not null;" json:"text" form:"text"`
@@ -15,13 +15,13 @@ type Task struct {
 	User   users.User `json:"user"`
 }
 
-func (m *Task) BeforeCreate() error {
+func (m *History) BeforeCreate() error {
 	m.CreatedAt = time.Now()
 	m.UpdatedAt = time.Now()
 	return nil
 }
 
-func (m *Task) BeforeUpdate() error {
+func (m *History) BeforeUpdate() error {
 	m.UpdatedAt = time.Now()
 	return nil
 }

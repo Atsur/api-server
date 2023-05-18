@@ -2,13 +2,14 @@ package controllers
 
 import (
 	"errors"
-	models "github.com/antonioalfa22/go-rest-template/internal/pkg/models/users"
-	"github.com/antonioalfa22/go-rest-template/internal/pkg/persistence"
-	"github.com/antonioalfa22/go-rest-template/pkg/crypto"
-	"github.com/antonioalfa22/go-rest-template/pkg/http-err"
-	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
+
+	models "github.com/atsur/api-server/internal/pkg/models/users"
+	"github.com/atsur/api-server/internal/pkg/persistence"
+	"github.com/atsur/api-server/pkg/crypto"
+	"github.com/atsur/api-server/pkg/http_err"
+	"github.com/gin-gonic/gin"
 )
 
 type UserInput struct {
