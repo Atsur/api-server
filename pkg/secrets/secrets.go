@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	projectID = os.Getenv("GOOGLE_CLOUD_PROJECT")
+	projectID          = os.Getenv("GOOGLE_CLOUD_PROJECT")
 	firebaseConfigFile = os.Getenv("FIREBASE_CONFIG_FILE")
 )
 

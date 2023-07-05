@@ -4,9 +4,9 @@ import (
 	"context"
 	firebase "firebase.google.com/go"
 	"firebase.google.com/go/auth"
+	"github.com/pkg/errors"
 	"google.golang.org/api/option"
 	"os"
-	"github.com/pkg/errors"
 )
 
 var (

@@ -1,14 +1,14 @@
 package middlewares
 
 import (
-	"net/http"
-	"log"
-	"time"
-	"strings"
 	"firebase.google.com/go/auth"
 	"github.com/atsur/api-server/pkg/crypto"
-	"github.com/gin-gonic/gin"
 	"github.com/atsur/api-server/pkg/secrets"
+	"github.com/gin-gonic/gin"
+	"log"
+	"net/http"
+	"strings"
+	"time"
 )
 
 const (
@@ -17,7 +17,6 @@ const (
 	cronExecutedHeader  = "X-Appengine-Cron"
 	valName             = "FIREBASE_ID_TOKEN"
 )
-
 
 func AuthRequired() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -61,11 +60,11 @@ func AuthJWT(client *auth.Client) gin.HandlerFunc {
 func AuthAPIKey(secretId string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		key := c.Request.Header.Get(apiKeyHeader)
-		log.Println("header key is = ",key)
+		log.Println("header key is = ", key)
 		secret, err := secrets.GetSecret(secretId)
 		if err != nil {
-			log.Println("failed to get secret = ",err)
-			log.Println("failed to get secret err = ",err)
+			log.Println("failed to get secret = ", err)
+			log.Println("failed to get secret err = ", err)
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 				"code":    http.StatusUnauthorized,
 				"message": http.StatusText(http.StatusUnauthorized),

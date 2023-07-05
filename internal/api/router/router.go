@@ -61,6 +61,39 @@ func Setup(client *auth.Client) *gin.Engine {
 	versioned.PUT("/api/tasks/:id", controllers.UpdateTask)
 	versioned.DELETE("/api/tasks/:id", controllers.DeleteTask)
 
+	// ================== Artifact Routes
+	versioned.GET("/api/artifact/:id", controllers.GetArtifactById)
+	versioned.GET("/api/artifacts", controllers.GetArtifacts)
+	versioned.POST("/api/artifact", controllers.CreateArtifact)
+	versioned.PUT("/api/artifact/:id", controllers.UpdateArtifact)
+	versioned.DELETE("/api/artifact/:id", controllers.DeleteArtifact)
+
+	// ================== Artifact Routes
+	versioned.GET("/api/artifact/:id/provenance", controllers.GetProvenanceByArtifactId)
+	versioned.GET("/api/artifact/:id/exhibitions", controllers.GetExhibitionByArtifactId)
+	versioned.GET("/api/artifact/:id/auctions", controllers.GetAuctionsByArtifactId)
+
+	// ================== Provenance Routes
+	versioned.GET("/api/provenance/:id", controllers.GetProvenanceById)
+	versioned.GET("/api/provenance", controllers.GetProvenances)
+	versioned.POST("/api/provenance", controllers.CreateProvenance)
+	versioned.PUT("/api/provenance/:id", controllers.UpdateProvenance)
+	versioned.DELETE("/api/provenance/:id", controllers.DeleteProvenance)
+
+	// ================== Exhibition Routes
+	versioned.GET("/api/exhibition/:id", controllers.GetExhibitionById)
+	versioned.GET("/api/exhibition", controllers.GetExhibitions)
+	versioned.POST("/api/exhibition", controllers.CreateExhibition)
+	versioned.PUT("/api/exhibition/:id", controllers.UpdateExhibition)
+	versioned.DELETE("/api/exhibition/:id", controllers.DeleteExhibition)
+
+	// ================== Auction Routes
+	versioned.GET("/api/auction/:id", controllers.GetAuctionById)
+	versioned.GET("/api/auction", controllers.GetAuctions)
+	versioned.POST("/api/auction", controllers.CreateAuction)
+	versioned.PUT("/api/auction/:id", controllers.UpdateAuction)
+	versioned.DELETE("/api/auction/:id", controllers.DeleteAuction)
+
 	// Admin routes
 	admin := app.Group("/v1/admin")
 	// must have api key
@@ -71,6 +104,13 @@ func Setup(client *auth.Client) *gin.Engine {
 	admin.POST("/api/users", controllers.CreateUser)
 	admin.PUT("/api/users/:id", controllers.UpdateUser)
 	admin.DELETE("/api/users/:id", controllers.DeleteUser)
+
+	// ================== Artifact Routes
+	admin.GET("/api/artifact/:id", controllers.GetArtifactById)
+	admin.GET("/api/artifacts", controllers.GetArtifacts)
+	admin.POST("/api/artifact", controllers.CreateArtifact)
+	admin.PUT("/api/artifact/:id", controllers.UpdateArtifact)
+	admin.DELETE("/api/artifact/:id", controllers.DeleteArtifact)
 
 	return app
 }

@@ -2,12 +2,12 @@ package api
 
 import (
 	"fmt"
-	"log"
 	"github.com/atsur/api-server/internal/api/router"
 	"github.com/atsur/api-server/internal/pkg/config"
 	"github.com/atsur/api-server/internal/pkg/db"
 	"github.com/atsur/api-server/pkg/fbauth"
 	"github.com/gin-gonic/gin"
+	"log"
 )
 
 func setConfiguration(configPath string) {
