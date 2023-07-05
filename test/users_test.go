@@ -21,11 +21,10 @@ func Setup() {
 func TestAddUser(t *testing.T) {
 	Setup()
 	user := models.User{
-		Firstname: "Antonio",
-		Lastname:  "Paya",
-		Username:  "antonio",
-		Hash:      "hash",
-		Role:      models.UserRole{RoleName: "user"},
+		Email:        "Antonio",
+		UUID:         "Paya",
+		PasswordHash: "hash",
+		Role:         models.UserRole{RoleName: "user"},
 	}
 	s := persistence.GetUserRepository()
 	if err := s.Add(&user); err != nil {

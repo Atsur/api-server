@@ -63,7 +63,7 @@ func SetupDB() {
 
 // Auto migrate project models
 func migration() {
-	var users_data = []users.User{{Username: "jinzhu_1", Firstname: "afasaf"}, {Username: "jinzhu_10000"}}
+	var users_data = []users.User{{Email: "adaorajiaku@gmail.com", UUID: "afasaf"}, {Email: "adaorajiaku@gmail.com"}}
 
 	// batch size 100
 	DB.AutoMigrate(users_data, 100)

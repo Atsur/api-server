@@ -12,7 +12,7 @@ import (
 )
 
 type LoginInput struct {
-	Username string `json:"username" binding:"required"`
+	Email    string `json:"email" binding:"required"`
 	Password string `json:"password" binding:"required"`
 }
 
@@ -20,15 +20,15 @@ func Login(c *gin.Context) {
 	var loginInput LoginInput
 	_ = c.BindJSON(&loginInput)
 	s := persistence.GetUserRepository()
-	if user, err := s.GetByUsername(loginInput.Username); err != nil {
+	if user, err := s.GetByEmail(loginInput.Email); err != nil {
 		http_err.NewError(c, http.StatusNotFound, errors.New("user not found"))
 		log.Println(err)
 	} else {
-		if !crypto.ComparePasswords(user.Hash, []byte(loginInput.Password)) {
+		if !crypto.ComparePasswords(user.PasswordHash, []byte(loginInput.Password)) {
 			http_err.NewError(c, http.StatusForbidden, errors.New("user and password not match"))
 			return
 		}
-		token, _ := crypto.CreateToken(user.Username)
+		token, _ := crypto.CreateToken(user.Email)
 		c.JSON(http.StatusOK, token)
 	}
 }

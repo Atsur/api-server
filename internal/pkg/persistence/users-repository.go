@@ -29,10 +29,21 @@ func (r *UserRepository) Get(id string) (*models.User, error) {
 	return &user, err
 }
 
-func (r *UserRepository) GetByUsername(username string) (*models.User, error) {
+func (r *UserRepository) GetByEmail(email string) (*models.User, error) {
 	var user models.User
 	where := models.User{}
-	where.Username = username
+	where.Email = email
+	_, err := First(&where, &user, []string{"Role"})
+	if err != nil {
+		return nil, err
+	}
+	return &user, err
+}
+
+func (r *UserRepository) GetByUUID(uuid string) (*models.User, error) {
+	var user models.User
+	where := models.User{}
+	where.UUID = uuid
 	_, err := First(&where, &user, []string{"Role"})
 	if err != nil {
 		return nil, err

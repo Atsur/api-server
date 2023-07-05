@@ -94,6 +94,14 @@ func Setup(client *auth.Client) *gin.Engine {
 	versioned.PUT("/api/auction/:id", controllers.UpdateAuction)
 	versioned.DELETE("/api/auction/:id", controllers.DeleteAuction)
 
+	// ================== Profile Routes
+	versioned.GET("/api/profile/:id", controllers.GetProfileById)
+	versioned.GET("/api/profile/user/:user_id", controllers.GetProfileByUserId)
+	versioned.GET("/api/profile", controllers.GetProfiles)
+	versioned.POST("/api/profile", controllers.CreateProfile)
+	versioned.PUT("/api/profile/:id", controllers.UpdateProfile)
+	versioned.DELETE("/api/profile/:id", controllers.DeleteProfile)
+
 	// Admin routes
 	admin := app.Group("/v1/admin")
 	// must have api key
