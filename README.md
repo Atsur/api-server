@@ -14,7 +14,13 @@ A Go (Golang) API REST built with Gin Framework
 go run env.go
 ```
 
-2. **Set Enviornment Variables**
+2. **Authorize google auth to read bucket file**
+
+```shell script
+gcloud auth application-default login
+```
+
+3. **Set Enviornment Variables**
 
 ```shell script
 go run env.go
@@ -22,6 +28,16 @@ go run env.go
 
 ```shell script
 chmod +x ./scripts/run-locally
+./scripts/run-locally
+```
+
+4. **Run Locally**
+
+```shell script
+go run env.go
+```
+
+```shell script
 ./scripts/run-locally
 ```
 _______
