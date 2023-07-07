@@ -40,6 +40,11 @@ go run env.go
 ```shell script
 ./scripts/run-locally
 ```
+
+-- Format codebase
+```shell script
+gofmt -s -w .
+```
 _______
 
 ## Possible Errors

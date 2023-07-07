@@ -8,7 +8,6 @@ import (
 	"cloud.google.com/go/storage"
 	"context"
 	"github.com/pkg/errors"
-
 	// "fmt"
 	// "strings"
 	// "log"
@@ -42,7 +41,6 @@ func ReadFile(fileName string) ([]byte, error) {
 
 	return slurp, nil
 }
-
 
 // type demo struct {
 // 	bucketName string

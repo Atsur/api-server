@@ -20,7 +20,7 @@ var (
 
 func InitAuth() (*auth.Client, error) {
 
-	file, err := storage.ReadFile(firebaseConfigFile);
+	file, err := storage.ReadFile(firebaseConfigFile)
 	if err != nil {
 		return nil, errors.Wrap(err, "error reading firebase config file (init auth)")
 	}
@@ -28,20 +28,10 @@ func InitAuth() (*auth.Client, error) {
 	ctx := context.Background()
 	creds, err := google.CredentialsFromJSON(ctx, file, secretsmanager.DefaultAuthScopes()...)
 	if err != nil {
-		// TODO: handle error.
 		return nil, errors.Wrap(err, "error getting cloud credentials from json (init auth))")
 	}
-	// client, err := secretsmanager.NewClient(ctx, option.WithCredentials(creds))
-	// if err != nil {
-	// 	// TODO: handle error.
-	// 	return nil, errors.Wrap(err, "error initializing firebase auth (create firebase app)")
-	// }
-	// _ = client // Use the client.
-
-
 
 	opt := option.WithCredentials(creds)
-
 	// opt := option.WithCredentialsFile(firebaseConfigFile)
 	app, err := firebase.NewApp(ctx, nil, opt)
 	if err != nil {
