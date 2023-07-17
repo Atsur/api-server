@@ -61,17 +61,24 @@ func Setup(client *auth.Client) *gin.Engine {
 	versioned.PUT("/api/tasks/:id", controllers.UpdateTask)
 	versioned.DELETE("/api/tasks/:id", controllers.DeleteTask)
 
-	// ================== Artifact Routes
-	versioned.GET("/api/artifact/:id", controllers.GetArtifactById)
-	versioned.GET("/api/artifacts", controllers.GetArtifacts)
-	versioned.POST("/api/artifact", controllers.CreateArtifact)
-	versioned.PUT("/api/artifact/:id", controllers.UpdateArtifact)
-	versioned.DELETE("/api/artifact/:id", controllers.DeleteArtifact)
+	// ================== Entry Routes
+	versioned.GET("/api/entry/:id", controllers.GetEntryById)
+	versioned.GET("/api/entries", controllers.GetEntries)
+	versioned.POST("/api/entry", controllers.CreateEntry)
+	versioned.PUT("/api/entry/:id", controllers.UpdateEntry)
+	versioned.DELETE("/api/entry/:id", controllers.DeleteEntry)
 
-	// ================== Artifact Routes
-	versioned.GET("/api/artifact/:id/provenance", controllers.GetProvenanceByArtifactId)
-	versioned.GET("/api/artifact/:id/exhibitions", controllers.GetExhibitionByArtifactId)
-	versioned.GET("/api/artifact/:id/auctions", controllers.GetAuctionsByArtifactId)
+	// ================== Record Routes
+	versioned.GET("/api/record/:id", controllers.GetRecordById)
+	versioned.GET("/api/records", controllers.GetRecords)
+	versioned.POST("/api/record", controllers.CreateRecord)
+	versioned.PUT("/api/record/:id", controllers.UpdateRecord)
+	versioned.DELETE("/api/record/:id", controllers.DeleteRecord)
+
+	// ================== Record Routes
+	versioned.GET("/api/record/:id/provenance", controllers.GetProvenanceByRecordId)
+	versioned.GET("/api/record/:id/exhibitions", controllers.GetExhibitionByRecordId)
+	versioned.GET("/api/record/:id/auctions", controllers.GetAuctionsByRecordId)
 
 	// ================== Provenance Routes
 	versioned.GET("/api/provenance/:id", controllers.GetProvenanceById)
@@ -113,12 +120,12 @@ func Setup(client *auth.Client) *gin.Engine {
 	admin.PUT("/api/users/:id", controllers.UpdateUser)
 	admin.DELETE("/api/users/:id", controllers.DeleteUser)
 
-	// ================== Artifact Routes
-	admin.GET("/api/artifact/:id", controllers.GetArtifactById)
-	admin.GET("/api/artifacts", controllers.GetArtifacts)
-	admin.POST("/api/artifact", controllers.CreateArtifact)
-	admin.PUT("/api/artifact/:id", controllers.UpdateArtifact)
-	admin.DELETE("/api/artifact/:id", controllers.DeleteArtifact)
+	// ================== Record Routes
+	admin.GET("/api/Record/:id", controllers.GetRecordById)
+	admin.GET("/api/Records", controllers.GetRecords)
+	admin.POST("/api/Record", controllers.CreateRecord)
+	admin.PUT("/api/Record/:id", controllers.UpdateRecord)
+	admin.DELETE("/api/Record/:id", controllers.DeleteRecord)
 
 	return app
 }

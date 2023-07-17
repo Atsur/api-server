@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	models "github.com/atsur/api-server/internal/pkg/models/users"
+	models "github.com/atsur/api-server/internal/pkg/models"
 	"github.com/atsur/api-server/internal/pkg/persistence"
 	"github.com/atsur/api-server/pkg/http_err"
 	"github.com/gin-gonic/gin"

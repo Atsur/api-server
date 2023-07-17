@@ -4,7 +4,7 @@ import (
 	"strconv"
 
 	"github.com/atsur/api-server/internal/pkg/db"
-	models "github.com/atsur/api-server/internal/pkg/models/artifacts"
+	models "github.com/atsur/api-server/internal/pkg/models"
 )
 
 type ExhibitionRepository struct{}

@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/atsur/api-server/internal/pkg/config"
+	"github.com/atsur/api-server/internal/pkg/models"
 	"github.com/atsur/api-server/internal/pkg/models/tasks"
-	"github.com/atsur/api-server/internal/pkg/models/users"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -63,12 +63,12 @@ func SetupDB() {
 
 // Auto migrate project models
 func migration() {
-	var users_data = []users.User{{Email: "adaorajiaku@gmail.com", UUID: "afasaf"}, {Email: "adaorajiaku@gmail.com"}}
+	var users_data = []models.User{{Email: "adaorajiaku@gmail.com", UUID: "afasaf"}, {Email: "adaorajiaku@gmail.com"}}
 
 	// batch size 100
 	DB.AutoMigrate(users_data, 100)
-	DB.AutoMigrate(&users.User{})
-	DB.AutoMigrate(&users.UserRole{})
+	DB.AutoMigrate(&models.User{})
+	DB.AutoMigrate(&models.UserRole{})
 	DB.AutoMigrate(&tasks.Task{})
 }
 

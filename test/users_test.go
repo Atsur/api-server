@@ -6,7 +6,7 @@ import (
 
 	"github.com/atsur/api-server/internal/pkg/config"
 	"github.com/atsur/api-server/internal/pkg/db"
-	models "github.com/atsur/api-server/internal/pkg/models/users"
+	models "github.com/atsur/api-server/internal/pkg/models"
 	"github.com/atsur/api-server/internal/pkg/persistence"
 )
 
