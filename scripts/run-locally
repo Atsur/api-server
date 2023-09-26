@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-GOOGLE_CLOUD_PROJECT=registry-dev-c01c4 API_KEY_NAME=registry-12345 FIREBASE_CONFIG_FILE=firebase-admin-sdk.json go run cmd/api/main.go
+AWS_ACCESS_KEY_ID="AKIASO6XPUFOPSBIKJWV" AWS_SECRET_ACCESS_KEY="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" AWS_REGION="eu-north-1" BUCKET_NAME="atsur-registry-artifacts-dev" GOOGLE_CLOUD_PROJECT=registry-dev-c01c4 API_KEY_NAME=registry-12345 FIREBASE_CONFIG_FILE=firebase-admin-sdk.json go run cmd/api/main.go

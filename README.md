@@ -64,6 +64,10 @@ make build
 docker build . -t api-rest
 ```
 
+```shell script - gcloud deploy
+gcloud builds submit --region=us-west2 --config cloudbuild.yaml   
+```
+
 2. **Run**
 
 ```shell script

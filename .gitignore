@@ -25,3 +25,5 @@ bin/
 !.vscode/extensions.json
 
 firebase-admin-sdk.json
+
+scripts/

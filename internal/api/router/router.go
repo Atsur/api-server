@@ -113,12 +113,15 @@ func Setup(client *auth.Client) *gin.Engine {
 	admin := app.Group("/v1/admin")
 	// must have api key
 	admin.Use(middlewares.AuthAPIKey(apiKeyName))
+
 	// ================== User Routes
 	admin.GET("/users", controllers.GetUsers)
 	admin.GET("/api/users/:id", controllers.GetUserById)
 	admin.POST("/api/users", controllers.CreateUser)
 	admin.PUT("/api/users/:id", controllers.UpdateUser)
 	admin.DELETE("/api/users/:id", controllers.DeleteUser)
+
+	admin.POST("/api/qr-code", controllers.CreateQR)
 
 	// ================== Record Routes
 	admin.GET("/api/Record/:id", controllers.GetRecordById)
