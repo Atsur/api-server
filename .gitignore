@@ -26,4 +26,5 @@ bin/
 
 firebase-admin-sdk.json
 
-scripts/
+scripts/run-locally
+script/*
